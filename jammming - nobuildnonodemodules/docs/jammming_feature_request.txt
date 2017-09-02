@@ -1,0 +1,13 @@
+Technical design document: https://drive.google.com/open?id=1YSjcza14ngPlj8GnwnZeRVwYRHwB1GIdgltn6aKzO10
+
+App live including added feature at: jammmingv2.surge.sh
+App live before added feature at: jammming.surge.sh
+
+My own github repository of the whole Jammming project including this added feature (private repo so pls request access if you want it)
+
+A description of the work flow of the project - with GitHub and Targetprocess, not including adding new feature - can be found 
+here: https://drive.google.com/file/d/0B-sHcPnYXrBzZEs2MUJyVG5VWVk/view?usp=sharing 
+
+The docs directory also contains: some .md files with answers to the questions that where asked at the beginning of the project.
+
+Contact: r.naastepad@hetassink.nl
