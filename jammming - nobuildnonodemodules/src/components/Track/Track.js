@@ -9,14 +9,14 @@ export class Track extends Component {
 
   handleClick(e) {
     if (this.props.action==='+') {
-      this.props.addTrack(this.props.track, this.props.id);
+      this.props.addTrack(this.props.track);
     } else {
       this.props.removeTrack(this.props.id);
     }
   }
 
   setAddedClass() {
-    return this.props.track.added && this.props.action === '+' ? 'Added' : '';
+    return this.props.added && this.props.action === '+' ? 'Added' : '';
   }
 
   render() {

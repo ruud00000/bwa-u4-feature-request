@@ -10,7 +10,8 @@ class App extends Component {
     super(props);
     this.state = {
       playListTracks: [],
-      searchResultTracks: []
+      searchResultTracks: [],
+      addedTracks: []
      };
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
@@ -23,12 +24,21 @@ class App extends Component {
     .then(tracks => this.setState( { searchResultTracks: tracks } ));
   }
 
-  addTrack(track, index) {
-    this.state.playListTracks.push(track);
-    this.setState({ playListTracks: this.state.playListTracks });
-    const tracksArray = this.state.searchResultTracks;
-    tracksArray[index].added = true;
-    this.setState({ searchResultTracks: tracksArray });
+  addTrack(track) {
+    if (this.state.playListTracks.findIndex(playListTrack => playListTrack.id === track.id) === -1 ) {
+      const addedArray = this.state.addedTracks;
+      addedArray.push(track.id);
+      addedArray.sort();
+      this.setState({ addedTracks: addedArray });
+      const playListArray = this.state.playListTracks;
+      playListArray.push(track);
+      this.setState({ playListTracks: playListArray });
+      // const searchResultArray = this.state.searchResultTracks;
+      // searchResultArray[index].added = true;
+      // this.setState({ searchResultTracks: searchResultArray });
+    } else {
+      console.log(`Track with id ${track.id} is already in the Playlist`)
+    }
   }
 
   removeTrack(index) {
@@ -39,8 +49,9 @@ class App extends Component {
       const trackIndex = this.state.searchResultTracks.findIndex(track => track.id === id);
       tracksArray[trackIndex].added = '';
     }
-    this.state.playListTracks.splice(index,1);
-    this.setState({ playListTracks: this.state.playListTracks });
+    const playListArray = this.state.playListTracks;
+    playListArray.splice(index,1);
+    this.setState({ playListTracks: playListArray });
   }
 
   saveToSpotify(tracks, name) {
@@ -60,7 +71,8 @@ class App extends Component {
           <div className="App-playlist">
             <SearchResultTracks
               addTrack={this.addTrack}
-              searchResultTracks={this.state.searchResultTracks} />
+              searchResultTracks={this.state.searchResultTracks}
+              addedTracks={this.state.addedTracks} />
             <PlayListTracks
               removeTrack={this.removeTrack}
               playListTracks={this.state.playListTracks}
